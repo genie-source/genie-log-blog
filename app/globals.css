@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #ffffff;
+  --fg: #111111;
+  --muted: #888888;
+  --border: #ebebeb;
+  --surface: #f7f7f7;
+  --accent: #3d6cf4;
+  --accent2: #f4573d;
+  --accent3: #1cc986;
+  --accent4: #f5a623;
+  --sans: 'Noto Sans KR', sans-serif;
+  --mono: 'Space Mono', monospace;
+  --content: 1080px;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
