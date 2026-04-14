@@ -10,7 +10,6 @@ export type PostMeta = {
   date: string
   category: string
   description: string
-  readTime: string
 }
 
 export type Post = PostMeta & {
@@ -30,10 +29,9 @@ export function getAllPosts(): PostMeta[] {
     return {
       slug,
       title: data.title ?? '제목 없음',
-      date: data.date ? String(data.date) : '',
+      date: data.date ? new Date(data.date).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }) : '',
       category: data.category ?? 'etc',
-      description: data.description ?? '',
-      readTime: data.readTime ?? '5분',
+      description: data.description ?? ''
     }
   })
 
@@ -50,10 +48,9 @@ export function getPostBySlug(slug: string): Post | null {
   return {
     slug,
     title: data.title ?? '제목 없음',
-    date: data.date ?? '',
+    date: data.date ? new Date(data.date).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }) : '',
     category: data.category ?? 'etc',
     description: data.description ?? '',
-    readTime: data.readTime ?? '5분',
     content,
   }
 }

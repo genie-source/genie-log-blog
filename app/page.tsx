@@ -134,7 +134,6 @@ export default function Home() {
                     </div>
                     <div className={styles.postRight}>
                       <span className={styles.postDate}>{post.date}</span>
-                      <span className={styles.postMin}>{post.readTime} 읽기</span>
                     </div>
                   </Link>
                 )

@@ -12,8 +12,8 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug)
+export async function generateMetadata({ params }: {params: Promise<{ slug: string }>}) {
+  const post = getPostBySlug((await params).slug)
   if (!post) return {}
   return {
     title: `${post.title} — genie.log`,
@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default function PostPage({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug)
+export default async function PostPage({ params }: { params: Promise<{ slug: string }>} ) {
+  const post = getPostBySlug((await params).slug)
   if (!post) notFound()
 
   const allPosts = getAllPosts()
@@ -52,8 +52,6 @@ export default function PostPage({ params }: { params: { slug: string } }) {
               </div>
               <span className={styles.metaSep}>·</span>
               <span className={styles.metaDate}>{post.date}</span>
-              <span className={styles.metaSep}>·</span>
-              <span className={styles.metaRead}>{post.readTime} 읽기</span>
             </div>
           </div>
 

@@ -9,6 +9,8 @@ const categoryMap: Record<string, CategoryStyle> = {
   Server:   { bg: '#fff8f0', color: '#f5a623' },
   Infra:    { bg: '#fff0f0', color: '#f4573d' },
   삽질기:   { bg: '#f7f7f7', color: '#888888' },
+  논문정리: { bg: '#fef9ee', color: '#7c3aed' },
+
 }
 
 export function getCategoryStyle(category: string): CategoryStyle {
