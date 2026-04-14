@@ -18,7 +18,7 @@ export default function AboutPage() {
           <div className={styles.heroGreeting}>// Hello, World!</div>
           <div className={styles.heroName}>이진경</div>
           <div className={styles.heroDesc}>
-            한국외국어대학교 컴퓨터공학과 4학년입니다. 백엔드 개발과 데이터베이스에 관심이 많고, 서버와 인프라도 공부하고 있습니다. 아직 방향을 정해가는 중이지만, 배운 것들을 꾸준히 기록하며 성장하고 있어요.
+            비전공자로 시작해 SaaS 스타트업 프론트엔드 개발자로 일했고 실무의 한계를 넘고 싶어 컴퓨터공학과에 편입했습니다. 지금은 CS에 대해 공부하며 배운 것들을 꾸준히 기록하고 있어요.
           </div>
           <div className={styles.heroLinks}>
             <a className={`${styles.heroLink} ${styles.primary}`} href="/resume.pdf" target="_blank">이력서 다운로드</a>
@@ -33,28 +33,17 @@ export default function AboutPage() {
             <div className={styles.sectionLabel}>Experience</div>
             <div className={styles.expList}>
               <div className={styles.expItem}>
-                <div className={styles.expPeriod}>2024.09 —<br />2025.02</div>
+                <div className={styles.expPeriod}>2023 —<br />2024</div>
                 <div>
-                  <div className={styles.expTitle}>백엔드 개발 인턴</div>
-                  <div className={styles.expOrg}>// (주) OOO 회사</div>
-                  <div className={styles.expDesc}>REST API 설계 및 개발, PostgreSQL 쿼리 최적화 작업 참여. 기존 Seq Scan 쿼리에 인덱스를 추가해 응답 속도 개선.</div>
-                  <div className={styles.expTags}>
-                    <span className={styles.expTag}>FastAPI</span>
-                    <span className={styles.expTag}>PostgreSQL</span>
-                    <span className={styles.expTag}>Docker</span>
+                  <div className={styles.expTitle}>프론트엔드 개발자</div>
+                  <div className={styles.expOrg}>// 구독 관리 SaaS 스타트업</div>
+                  <div className={styles.expDesc}>
+                    고객 미팅 피드백을 직접 제품에 반영하는 빠른 개발 루프로 운영. 150명 이상 규모 기업 고객 요청으로 CSV 업로드 기반 일괄 초대, 역할 기반 접근 권한(RBAC) UI, 권한 변경 이력 로그를 설계·개발. 배포 후 해당 고객사의 온보딩 소요 시간이 절반 이하로 단축.
                   </div>
-                </div>
-              </div>
-              <div className={styles.expItem}>
-                <div className={styles.expPeriod}>2024.03 —<br />2024.08</div>
-                <div>
-                  <div className={styles.expTitle}>교내 개발 동아리 활동</div>
-                  <div className={styles.expOrg}>// OO 개발 동아리</div>
-                  <div className={styles.expDesc}>팀 프로젝트 백엔드 파트 담당. Spring Boot 기반 API 서버 구축 및 AWS EC2 배포 경험.</div>
                   <div className={styles.expTags}>
-                    <span className={styles.expTag}>Spring Boot</span>
-                    <span className={styles.expTag}>MySQL</span>
-                    <span className={styles.expTag}>AWS EC2</span>
+                    <span className={styles.expTag}>React</span>
+                    <span className={styles.expTag}>RBAC</span>
+                    <span className={styles.expTag}>SaaS</span>
                   </div>
                 </div>
               </div>
@@ -64,10 +53,11 @@ export default function AboutPage() {
           <div>
             <div className={styles.sectionLabel}>Skills</div>
             {[
-              { group: 'Languages',    skills: ['Python', 'Java', 'JavaScript', 'SQL'] },
-              { group: 'Backend',      skills: ['FastAPI', 'Spring Boot', 'Node.js'] },
-              { group: 'Database',     skills: ['PostgreSQL', 'MySQL', 'Redis'] },
-              { group: 'Infra / Tools',skills: ['Docker', 'Linux', 'Nginx', 'Git', 'AWS EC2'] },
+              { group: 'Languages',     skills: ['Python', 'Java', 'JavaScript', 'SQL'] },
+              { group: 'Backend',       skills: ['FastAPI', 'Spring Boot'] },
+              { group: 'Database',      skills: ['MySQL'] },
+              { group: 'AI / ML',       skills: ['PyTorch'] },
+              { group: 'Infra / Tools', skills: ['Linux', 'Git'] },
             ].map(({ group, skills }) => (
               <div key={group} className={styles.skillGroup}>
                 <div className={styles.skillGroupName}>{group}</div>
@@ -85,32 +75,25 @@ export default function AboutPage() {
           <div className={styles.projGrid}>
             {[
               {
-                name: 'Adversarial Attack 분석 프로젝트',
+                name: 'Adversarial Attack 분석 (캡스톤)',
                 badge: '졸업작품', badgeBg: '#eef1ff', badgeColor: '#3d6cf4',
-                desc: '영상에서 객체를 segmentation하고, adversarial attack을 적용하여 딥러닝 모델의 취약성을 분석하는 연구 프로젝트. YOLOv8 기반 segmentation 모델 실험 중.',
-                stack: ['Python', 'PyTorch', 'YOLOv8', 'OpenCV'],
-                github: '#', live: null,
+                desc: 'SegFormer(B0/B1)와 DeepLab+MobileNetV3 두 모델에 FGSM 공격을 적용, 분할 성능 저하 패턴을 정량·정성 분석. SegFormer는 경미한 perturbation에서도 경계 영역 mIoU가 평균 18% 이상 하락하는 결과 도출. 노이즈 필터링 전략 제안으로 연구 마무리 중.',
+                stack: ['Python', 'PyTorch', 'SegFormer', 'DeepLab', 'OpenCV', 'FGSM'],
+                github: 'https://github.com/ojo-hufs-ces-2026-capstone/capstone-project', live: null,
+              },
+              {
+                name: '멤버 초대 & RBAC 시스템',
+                badge: '실무', badgeBg: '#f0fff8', badgeColor: '#1cc986',
+                desc: '구독 관리 SaaS에서 150명+ 기업 고객 온보딩 문제를 해결하기 위해 직접 설계·개발. CSV 일괄 초대, 관리자·편집자·뷰어 3단계 권한 UI, 권한 변경 이력 로그 구현. 배포 후 온보딩 시간 50% 이상 단축.',
+                stack: ['React', 'RBAC', 'CSV Upload'],
+                github: null, live: null,
               },
               {
                 name: '개인 개발 블로그 (genie.log)',
-                badge: '개인', badgeBg: '#f0fff8', badgeColor: '#1cc986',
-                desc: '마크다운 파일 기반의 개인 개발 블로그. 백엔드·DBA·서버 공부 내용을 정리해 기록하는 공간. Next.js + SSG 방식으로 구현.',
-                stack: ['Next.js', 'TypeScript', 'Vercel'],
-                github: '#', live: '#',
-              },
-              {
-                name: '팀 일정 관리 서비스',
-                badge: '팀', badgeBg: '#fff8f0', badgeColor: '#f5a623',
-                desc: '동아리 팀원들의 일정을 공유하고 관리하는 웹 서비스. Spring Boot REST API + MySQL 기반으로 구현, AWS EC2에 배포.',
-                stack: ['Spring Boot', 'MySQL', 'AWS EC2', 'React'],
-                github: '#', live: null,
-              },
-              {
-                name: 'DB 성능 비교 실험',
-                badge: '연구', badgeBg: '#fff0f0', badgeColor: '#f4573d',
-                desc: 'PostgreSQL vs MySQL 인덱스 전략 및 쿼리 성능 비교 실험. 데이터베이스 수업 팀 프로젝트로 진행. EXPLAIN ANALYZE 기반 벤치마크 정리.',
-                stack: ['PostgreSQL', 'MySQL', 'Python'],
-                github: '#', live: null,
+                badge: '개인', badgeBg: '#fff8f0', badgeColor: '#f5a623',
+                desc: '마크다운 파일 기반 개인 개발 블로그. posts/ 폴더에 .md 파일을 추가하면 자동으로 포스팅되는 SSG 방식. Claude AI와 바이브 코딩으로 디자인부터 구현까지 진행.',
+                stack: ['Next.js', 'TypeScript', 'Markdown', 'Vercel'],
+                github: 'https://github.com/genie-source/genie-log-blog', live: null,
               },
             ].map((p) => (
               <div key={p.name} className={styles.projCard}>
@@ -123,7 +106,7 @@ export default function AboutPage() {
                   {p.stack.map((s) => <span key={s}>{s}</span>)}
                 </div>
                 <div className={styles.projLinks}>
-                  <a className={styles.projLink} href={p.github}>GitHub →</a>
+                  {p.github && <a className={styles.projLink} href={p.github}>GitHub →</a>}
                   {p.live && <a className={styles.projLink} href={p.live}>Live →</a>}
                 </div>
               </div>
@@ -135,12 +118,20 @@ export default function AboutPage() {
         <div className={styles.twoCol}>
           <div>
             <div className={styles.sectionLabel}>Education</div>
-            <div className={styles.eduItem}>
-              <div className={styles.eduPeriod}>2021.03 —<br />2025.02</div>
-              <div>
-                <div className={styles.eduSchool}>한국외국어대학교</div>
-                <div className={styles.eduMajor}>컴퓨터공학과 (4학년 재학 중)</div>
-                <div className={styles.eduNote}>// GPA 3.X / 4.5</div>
+            <div className={styles.expList}>
+              <div className={styles.eduItem}>
+                <div className={styles.eduPeriod}>2022 —<br />2025.02</div>
+                <div>
+                  <div className={styles.eduSchool}>한국외국어대학교</div>
+                  <div className={styles.eduMajor}>컴퓨터공학과 편입 (4학년 재학 중)</div>
+                </div>
+              </div>
+              <div className={styles.eduItem}>
+                <div className={styles.eduPeriod}>2021</div>
+                <div>
+                  <div className={styles.eduSchool}>위코드 부트캠프 수료</div>
+                  <div className={styles.eduMajor}>프론트엔드 과정</div>
+                </div>
               </div>
             </div>
           </div>
@@ -149,9 +140,8 @@ export default function AboutPage() {
             <div className={styles.sectionLabel}>Certificates</div>
             <div className={styles.certList}>
               {[
-                { name: '정보처리기사',   issuer: '한국산업인력공단',      date: '2024.06' },
-                { name: 'SQLD (SQL 개발자)', issuer: '한국데이터산업진흥원', date: '2024.04' },
-                { name: 'OPIc IM2',       issuer: 'ACTFL',                date: '2023.11' },
+                { name: 'TOEIC SPEAKING',      issuer: 'IM1',      date: '2026.04' },
+                { name: 'TOEIC',      issuer: '730',      date: '2024.09' },
               ].map((c) => (
                 <div key={c.name} className={styles.certItem}>
                   <div>
