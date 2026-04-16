@@ -90,7 +90,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className={styles.aboutBtnWrap}>
+              {/* <div className={styles.aboutBtnWrap}>
                 <Link href="/about" className={styles.aboutBtn}>
                   <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <circle cx="8" cy="5.5" r="2.5"/>
@@ -101,7 +101,7 @@ export default function Home() {
                     <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
