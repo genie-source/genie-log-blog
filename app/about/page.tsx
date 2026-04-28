@@ -18,7 +18,11 @@ export default function AboutPage() {
           <div className={styles.heroGreeting}>// Hello, World!</div>
           <div className={styles.heroName}>이진경</div>
           <div className={styles.heroDesc}>
-            비전공자로 시작해 SaaS 스타트업 프론트엔드 개발자로 일했고 실무의 한계를 넘고 싶어 컴퓨터공학과에 편입했습니다. 지금은 CS에 대해 공부하며 배운 것들을 꾸준히 기록하고 있어요.
+            Hi there 👋 I'm Jinkyung Lee<br/>
+            I'm currently a senior student at Hankuk University of Foreign Studies.<br/>
+            I'm interested in backend development, database.<br/>
+            I hope to grow as a developer who understands systems deeply. ☀️<br/>
+
           </div>
           <div className={styles.heroLinks}>
             <a className={`${styles.heroLink} ${styles.primary}`} href="/resume.pdf" target="_blank">이력서 다운로드</a>
@@ -136,7 +140,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div>
+          {/* <div>
             <div className={styles.sectionLabel}>Certificates</div>
             <div className={styles.certList}>
               {[
@@ -152,7 +156,7 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
 
       </div>
