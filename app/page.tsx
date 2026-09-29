@@ -1,33 +1,8 @@
-import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import PostList from "@/components/PostList";
 import { getAllPosts, getAllCategories } from "@/lib/posts";
-import { getCategoryStyle } from "@/lib/category";
 import styles from "./page.module.css";
-
-const AI_STORIES = [
-  {
-    tag: "// Prompt",
-    title: "SQL 튜닝을 Claude한테 맡겨봤더니",
-    desc: "느린 쿼리를 붙여넣고 EXPLAIN ANALYZE 결과를 주면 꽤 쓸만한 인덱스 제안을 해준다",
-    date: "2025.04.05",
-    read: "4분",
-  },
-  {
-    tag: "// Automation",
-    title: "GitHub Actions + AI로 PR 리뷰 자동화",
-    desc: "코드 diff를 LLM에 넣어서 리뷰 코멘트 자동 생성 — 아직 완벽하진 않지만 꽤 유용",
-    date: "2025.03.20",
-    read: "6분",
-  },
-  {
-    tag: "// Tool",
-    title: "로컬에서 LLM 돌려서 개발 보조로 쓰기",
-    desc: "Ollama + CodeLlama 셋업부터 실제 사용 후기까지",
-    date: "2025.03.01",
-    read: "8분",
-  },
-];
 
 export default function Home() {
   const posts = getAllPosts();
@@ -76,7 +51,7 @@ export default function Home() {
               <div className={styles.rightBlock}>
                 <div className={styles.rightBlockLabel}>Tech Stack</div>
                 <div className={styles.techPills}>
-                  {["Python", "Java", "JavaScript", "Git"].map((tech) => (
+                  {["Python", "LangChain", "LangGraph", "Pinecone", "FastAPI", "React"].map((tech) => (
                     <span key={tech} className={styles.techPill}>
                       {tech}
                     </span>
@@ -95,12 +70,12 @@ export default function Home() {
                     />
                     <div>
                       <div className={styles.workTitle}>
-                        DART 공시 데이터를 Python으로 수집하고 ChromaDB에
-                        임베딩해 저장한 뒤 LLM이 질문에 맞춰 관련 공시를 찾아
-                        요약해주는 RAG 서비스를 개발하고 있습니다.
+                        분리배출 안내 서비스 <strong>분리쏙</strong>에서 재분류
+                        검증(judge) 루프를 다시 연결하고, 품목·재질 관계를 담는
+                        GraphRAG 확장을 준비하고 있습니다.
                       </div>
                       <div className={styles.workSub}>
-                        개인 프로젝트 진행 중
+                        4인 팀 프로젝트 · 졸업논문으로 이어가는 중
                       </div>
                     </div>
                   </div>
@@ -125,69 +100,7 @@ export default function Home() {
         {/* POSTS */}
         <div className={styles.postsWrap}>
           <div className={styles.sectionLabel}>Post</div>
-          <div className={styles.catTabs}>
-            {["전체", ...categories].map((cat) => (
-              <span key={cat} className={styles.catTab}>
-                {cat}
-              </span>
-            ))}
-          </div>
-          <div className={styles.postList}>
-            {posts.length === 0 ? (
-              <div className={styles.emptyState}>
-                <p>아직 작성된 글이 없어요.</p>
-                <p>
-                  <code>posts/</code> 폴더에 <code>.md</code> 파일을 추가하면
-                  여기에 나타납니다.
-                </p>
-              </div>
-            ) : (
-              posts.map((post) => {
-                const { bg, color } = getCategoryStyle(post.category);
-                return (
-                  <Link
-                    key={post.slug}
-                    href={`/posts/${post.slug}`}
-                    className={styles.postRow}
-                  >
-                    <span
-                      className={styles.postCatBadge}
-                      style={{ background: bg, color }}
-                    >
-                      {post.category}
-                    </span>
-                    <div>
-                      <h3 className={styles.postTitle}>{post.title}</h3>
-                      <p className={styles.postDesc}>{post.description}</p>
-                    </div>
-                    <div className={styles.postRight}>
-                      <span className={styles.postDate}>{post.date}</span>
-                    </div>
-                  </Link>
-                );
-              })
-            )}
-          </div>
-        </div>
-
-        {/* AI STORIES */}
-        <div className={styles.aiSection}>
-          <div className={styles.aiInner}>
-            <div className={styles.aiLabel}>AI Stories</div>
-            <div className={styles.aiTitle}>AI로 개발 효율 올리기</div>
-            <div className={styles.aiGrid}>
-              {AI_STORIES.map((item) => (
-                <div key={item.title} className={styles.aiCard}>
-                  <div className={styles.aiCardTag}>{item.tag}</div>
-                  <h4 className={styles.aiCardTitle}>{item.title}</h4>
-                  <p className={styles.aiCardDesc}>{item.desc}</p>
-                  <div className={styles.aiCardFoot}>
-                    {item.date} · {item.read}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <PostList posts={posts} categories={categories} />
         </div>
       </main>
       <Footer />

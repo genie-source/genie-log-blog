@@ -25,20 +25,3 @@
   font-style: normal;
   color: var(--accent);
 }
-
-.menu {
-  display: flex;
-  gap: 28px;
-}
-
-.menu a {
-  font-size: 14px;
-  color: var(--muted);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.15s;
-}
-
-.menu a:hover {
-  color: var(--fg);
-}

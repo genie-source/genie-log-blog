@@ -179,7 +179,20 @@
   background: var(--bg);
   color: var(--muted);
   font-family: var(--mono);
-  cursor: default;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.catTab:hover {
+  border-color: #aaa;
+  color: var(--fg);
+}
+
+.catTabActive,
+.catTabActive:hover {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
 }
 
 .postList {
@@ -270,93 +283,6 @@
   background: var(--surface);
   padding: 2px 6px;
   border-radius: 4px;
-}
-
-/* ── AI STORIES ── */
-.aiSection {
-  background: #0f0f1a;
-  padding: 64px 40px;
-}
-
-.aiInner {
-  max-width: var(--content);
-  margin: 0 auto;
-}
-
-.aiLabel {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #444;
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.aiLabel::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: #1e1e2e;
-}
-
-.aiTitle {
-  font-size: 22px;
-  font-weight: 700;
-  color: #f0f0f5;
-  letter-spacing: -0.5px;
-  margin-bottom: 36px;
-}
-
-.aiGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.aiCard {
-  background: #16161f;
-  border: 1px solid #1e1e2e;
-  border-radius: 14px;
-  padding: 24px;
-  transition: border-color 0.2s;
-  cursor: default;
-}
-
-.aiCard:hover {
-  border-color: #333;
-}
-
-.aiCardTag {
-  font-family: var(--mono);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--accent);
-  margin-bottom: 12px;
-}
-
-.aiCardTitle {
-  font-size: 14px;
-  font-weight: 600;
-  color: #e0e0e8;
-  line-height: 1.45;
-  margin-bottom: 8px;
-}
-
-.aiCardDesc {
-  font-size: 12px;
-  color: #555;
-  line-height: 1.6;
-}
-
-.aiCardFoot {
-  margin-top: 18px;
-  font-family: var(--mono);
-  font-size: 11px;
-  color: #3a3a4a;
 }
 
 /* ABOUT BUTTON */

@@ -7,10 +7,6 @@ export default function Nav() {
       <Link href="/" className={styles.logo}>
         genie<em>.</em>log
       </Link>
-      <div className={styles.menu}>
-        <Link href="/">홈</Link>
-        <Link href="/posts">글</Link>
-      </div>
     </nav>
   )
 }
