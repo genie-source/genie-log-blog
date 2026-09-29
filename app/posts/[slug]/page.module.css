@@ -191,6 +191,29 @@
   font-weight: 700;
 }
 
+.postBody table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 14px;
+  line-height: 1.6;
+  display: block;
+  overflow-x: auto;
+}
+
+.postBody th,
+.postBody td {
+  border-bottom: 1px solid var(--border);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.postBody th {
+  font-weight: 700;
+  background: var(--surface);
+}
+
 /* SIDEBAR */
 .sidebar {
   display: flex;

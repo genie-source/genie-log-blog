@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import { getAllPosts, getPostBySlug } from '@/lib/posts'
 import { getCategoryStyle } from '@/lib/category'
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import remarkGfm from 'remark-gfm'
 import styles from './page.module.css'
 
 export async function generateStaticParams() {
@@ -56,7 +57,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           </div>
 
           <div className={styles.postBody}>
-            <MDXRemote source={post.content} />
+            <MDXRemote
+              source={post.content}
+              options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+            />
           </div>
         </main>
 
