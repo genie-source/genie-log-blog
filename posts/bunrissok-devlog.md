@@ -13,6 +13,24 @@ description: "사진 한 장으로 우리 동네 분리배출 규정을 안내�
 
 저는 **LangGraph 에이전트와 RAG**를 맡았고 프론트엔드 연동 일부를 함께 했습니다. 이 글은 제가 맡은 부분이 어떻게 바뀌어 왔는지에 대한 기록입니다.
 
+<iframe
+  src="https://www.youtube.com/embed/1zxZHePXq6o"
+  title="분리쏙 시연 영상 1"
+  style={{ width: '100%', aspectRatio: '16 / 9', border: 0, borderRadius: 8 }}
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+/>
+
+<iframe
+  src="https://www.youtube.com/embed/WnzVZeJwvYU"
+  title="분리쏙 시연 영상 2"
+  style={{ width: '100%', aspectRatio: '16 / 9', border: 0, borderRadius: 8 }}
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+/>
+
+📎 [발표 자료 (PDF)](/files/bunrissok/bunrissok.pdf)
+
 ## 전체 흐름
 
 ```
