@@ -12,6 +12,7 @@ const categoryMap: Record<string, CategoryStyle> = {
   논문정리: { bg: "#fef9ee", color: "#7c3aed" },
   학습정리: { bg: "#fdf2f8", color: "#db2777" }, // 핑크
   개발일지: { bg: "#f0fafa", color: "#0891b2" }, // 청록
+  NLP: { bg: "#f7fee7", color: "#65a30d" }, // 연두
 };
 
 export function getCategoryStyle(category: string): CategoryStyle {
