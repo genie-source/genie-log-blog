@@ -570,3 +570,46 @@
   border-color: #aaa;
   background: var(--surface);
 }
+
+/* ── PROJECT CARD ACTIONS ── */
+.projectCard {
+  position: relative;
+}
+
+.projectActions {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* 카드 전체를 눌러도 상세 페이지로 이동 */
+.stretchedLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+}
+
+.githubButton {
+  position: relative;
+  z-index: 1;
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  padding: 7px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--fg);
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.githubButton:hover {
+  border-color: #aaa;
+  background: var(--surface);
+}

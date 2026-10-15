@@ -11,11 +11,14 @@ export type Project = {
   /** 상세 페이지가 있으면 true, 없으면 link로 이동하거나 카드만 표시 */
   hasDetail?: boolean;
   link?: string;
+  /** 카드에 GitHub 버튼으로 표시 */
+  github?: string;
 };
 
 export const projects: Project[] = [
   {
     slug: "bunrissok",
+    github: "https://github.com/rkqls8522/recycling_ssg",
     name: "분리쏙",
     origin: "이스트소프트 AI Challengers OJT",
     meta: "기획 / 프론트 / RAG·Agent",
@@ -29,6 +32,7 @@ export const projects: Project[] = [
   },
   {
     slug: "daeum",
+    github: "https://github.com/EST-AI-Challengers-31/saver",
     name: "닿음",
     origin: "이스트소프트 AI Challengers 해커톤",
     meta: "PM / AI·RAG",
@@ -37,9 +41,11 @@ export const projects: Project[] = [
       "정확 일치 → 벡터 유사도 → LLM 설명 3단계 탐지 · 애매하면 UNKNOWN으로 판단 보류 · reranking v1→v3",
     result: "Precision 99% (threshold 0.80) · 200명 중 우수 수료생 20명",
     stack: ["FastAPI", "Pinecone", "Upstage Solar", "Alan LLM"],
+    hasDetail: true,
   },
   {
     slug: "ojo",
+    github: "https://github.com/ojo-hufs-ces-2026-capstone/capstone-project",
     name: "ojo",
     origin: "한국외국어대학교 캡스톤디자인",
     meta: "기획 / 데이터셋 / 프론트",
@@ -48,16 +54,19 @@ export const projects: Project[] = [
       "데이터셋 구조·클래스 ID 표준화 · 품질 검증 스크립트 · 탐지 결과 화면 · 후보 모델 비교로 세그멘테이션 모델 채택",
     result: "캡스톤디자인 경진대회 장려상",
     stack: ["LiteRaceSegNet", "Python", "React"],
+    hasDetail: true,
   },
   {
     slug: "tium",
+    github: "https://github.com/genie-source/tieum",
     name: "틔움",
     origin: "개인 프로젝트",
     meta: "기획 / 프론트 / 백엔드",
     problem: "발표·면접 불안을 단계적으로 줄이는 연습",
     built:
-      "글 답변 → 캐릭터 보며 음성 답변 → 면접관 영상의 3단계 노출 구조 · Claude API로 질문 생성·피드백 · 답변 PDF 저장",
+      "글 답변 → 캐릭터 보며 음성 답변 → 면접관 영상의 3단계 노출 구조 · Claude API로 자소서 기반 예상 질문 생성 · 답변 PDF 저장",
     stack: ["React", "TypeScript", "FastAPI", "Claude API"],
+    hasDetail: true,
   },
 ];
 

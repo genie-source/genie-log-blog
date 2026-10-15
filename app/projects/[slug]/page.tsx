@@ -3,6 +3,9 @@ import Link from 'next/link'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import BunrissokFlow from '@/components/BunrissokFlow'
+import DaeumFlow from '@/components/DaeumFlow'
+import OjoFlow from '@/components/OjoFlow'
+import TiumFlow from '@/components/TiumFlow'
 import { getAllPosts } from '@/lib/posts'
 import { getCategoryStyle } from '@/lib/category'
 import { getProject, projects } from '@/lib/projects'
@@ -12,6 +15,9 @@ import styles from './page.module.css'
 
 const flows: Record<string, () => React.ReactNode> = {
   bunrissok: () => <BunrissokFlow />,
+  daeum: () => <DaeumFlow />,
+  ojo: () => <OjoFlow />,
+  tium: () => <TiumFlow />,
 }
 
 export function generateStaticParams() {
@@ -39,6 +45,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     .map((s) => posts.find((p) => p.slug === s))
     .filter((p) => p !== undefined)
   const Flow = flows[slug]
+  const result = detail.result
 
   return (
     <>
@@ -55,7 +62,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <p className={styles.tagline}>{detail.tagline}</p>
             <div className={styles.metaRow}>
               <span>{project.meta}</span>
-              <span className={styles.metaDate}>{detail.period}</span>
+              {detail.period && <span className={styles.metaDate}>{detail.period}</span>}
             </div>
           </header>
 
@@ -78,6 +85,26 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </div>
             )}
           </div>
+
+          {detail.screens && detail.screens.length > 0 && (
+            <section>
+              <h2 className={styles.h2}>화면</h2>
+              <div className={styles.screens}>
+                {detail.screens.map((sc) => (
+                  <figure key={sc.src} className={styles.screen}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={sc.src}
+                      alt={sc.alt}
+                      className={`${styles.screenImg} ${sc.small ? styles.screenImgSmall : ''}`}
+                      loading="lazy"
+                    />
+                    <figcaption className={styles.caption}>{sc.caption}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            </section>
+          )}
 
           {Flow && (
             <section>
@@ -111,32 +138,153 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </div>
           </section>
 
+          {result && (
           <section>
             <h2 className={styles.h2}>결과</h2>
+            <p className={styles.p}>{result.summary}</p>
+
+            <div className={styles.highlights}>
+              {result.highlights.map((h) => (
+                <div key={h.label} className={styles.highlight}>
+                  <span className={styles.highlightValue}>{h.value}</span>
+                  <span className={styles.highlightLabel}>{h.label}</span>
+                </div>
+              ))}
+            </div>
+
+            {result.cases && result.calls && (
+            <>
+            <h3 className={`${styles.h3} ${styles.subhead}`}>케이스별 LLM 호출</h3>
             <div className={styles.tableWrap}>
-              <table className={styles.table}>
+              <table className={`${styles.table} ${styles.tableLeft}`}>
                 <thead>
                   <tr>
-                    <th>지표</th>
+                    <th>케이스</th>
                     <th>개선 전</th>
                     <th>개선 후</th>
-                    <th>감소</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {detail.results.map((r) => (
-                    <tr key={r.metric}>
-                      <td>{r.metric}</td>
-                      <td className={styles.num}>{r.before}</td>
-                      <td className={styles.num}>{r.after}</td>
-                      <td className={styles.change}>{r.change}</td>
+                  {result.cases.map((c) => (
+                    <tr key={c.label}>
+                      <td>{c.label}</td>
+                      <td>{c.before}</td>
+                      <td className={styles.afterCell}>{c.after}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <p className={styles.caption}>{detail.resultNote}</p>
+            <div className={styles.calcList}>
+              <div className={styles.calcRow}>
+                <span className={styles.label}>Before</span>
+                <span className={styles.calc}>{result.calls.before}</span>
+              </div>
+              <div className={styles.calcRow}>
+                <span className={styles.label}>After</span>
+                <span className={styles.calc}>{result.calls.after}</span>
+              </div>
+              <div className={styles.calcRow}>
+                <span className={styles.label}>절감률</span>
+                <span className={styles.change}>{result.calls.rate}</span>
+              </div>
+            </div>
+            </>
+            )}
+
+            {result.costModels && (
+            <>
+            <h3 className={`${styles.h3} ${styles.subhead}`}>모델별 비용 (100건 기준)</h3>
+            <div className={styles.tableWrap}>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>모델</th>
+                    <th>개선 전</th>
+                    <th>개선 후</th>
+                    <th>절감률</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {result.costModels.map((m) => (
+                    <tr key={m.model}>
+                      <td>{m.model}</td>
+                      <td className={styles.num}>{m.before.total}</td>
+                      <td className={styles.num}>{m.after.total}</td>
+                      <td className={styles.change}>{m.rate}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {result.costModels.map((m) => (
+              <details key={m.model} className={styles.details}>
+                <summary className={styles.detailsSummary}>{m.model} 계산 과정 보기</summary>
+                <div className={styles.detailsBody}>
+                  <p className={styles.caption}>{m.price}</p>
+                  <div className={styles.tableWrap}>
+                    <table className={styles.table}>
+                      <thead>
+                        <tr>
+                          <th>노드</th>
+                          <th>입력 토큰</th>
+                          <th>출력 토큰</th>
+                          <th>1회 비용</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {m.nodes.map((n) => (
+                          <tr key={n.node}>
+                            <td>{n.node}</td>
+                            <td className={styles.num}>{n.input}</td>
+                            <td className={styles.num}>{n.output}</td>
+                            <td className={styles.num}>{n.cost}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className={styles.calcList}>
+                    <div className={styles.calcRow}>
+                      <span className={styles.label}>Before</span>
+                      <span className={styles.calc}>
+                        {m.before.calc} = <b>{m.before.total}</b>
+                      </span>
+                    </div>
+                    <div className={styles.calcRow}>
+                      <span className={styles.label}>After</span>
+                      <span className={styles.calc}>
+                        {m.after.calc} = <b>{m.after.total}</b>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            ))}
+            </>
+            )}
+
+            {result.insights && (
+            <div className={styles.insight}>
+              <div className={styles.insightLabel}>핵심 인사이트</div>
+              <ul className={styles.insightList}>
+                {result.insights.map((i) => (
+                  <li key={i}>{i}</li>
+                ))}
+              </ul>
+            </div>
+            )}
+
+            {result.assumptions && (
+            <ul className={styles.assumptions}>
+              {result.assumptions.map((a) => (
+                <li key={a}>{a}</li>
+              ))}
+            </ul>
+            )}
           </section>
+          )}
 
           <section>
             <h2 className={styles.h2}>한계와 다음 단계</h2>

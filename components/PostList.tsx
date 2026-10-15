@@ -36,7 +36,7 @@ export default function PostList({
       <div className={styles.postList}>
         {posts.length === 0 ? (
           <div className={styles.emptyState}>
-            <p>아직 작성된 글이 없어요.</p>
+            <p>아직 작성된 글이 없습니다.</p>
             <p>
               <code>posts/</code> 폴더에 <code>.md</code> 파일을 추가하면
               여기에 나타납니다.

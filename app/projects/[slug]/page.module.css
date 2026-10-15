@@ -233,3 +233,175 @@
     padding: 12px;
   }
 }
+
+/* ── RESULT ANALYSIS ── */
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.highlight {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.highlightValue {
+  font-family: var(--mono);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+}
+
+.highlightLabel {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.subhead {
+  margin: 40px 0 12px;
+}
+
+.tableLeft th,
+.tableLeft td {
+  text-align: left;
+}
+
+.afterCell {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.calcList {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+}
+
+.calcRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 14px;
+}
+
+.calc {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: #333;
+}
+
+.calc b {
+  color: var(--fg);
+}
+
+.details {
+  margin-top: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.detailsSummary {
+  cursor: pointer;
+  padding: 14px 18px;
+  font-size: 14px;
+  color: #555;
+}
+
+.detailsSummary:hover {
+  color: var(--fg);
+}
+
+.detailsBody {
+  padding: 0 18px 18px;
+}
+
+.detailsBody .caption {
+  margin: 0 0 8px;
+}
+
+.insight {
+  margin-top: 32px;
+  background: #eef1ff;
+  border-radius: 12px;
+  padding: 20px 24px;
+  color: #2a3a8a;
+}
+
+.insightLabel {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.insightList {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.assumptions {
+  margin-top: 16px;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+@media (max-width: 600px) {
+  .highlights {
+    grid-template-columns: 1fr;
+  }
+
+  .calcRow {
+    flex-wrap: wrap;
+  }
+}
+
+/* ── SCREENS ── */
+.screens {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 16px;
+  align-items: start;
+}
+
+@media (max-width: 600px) {
+  .screens {
+    grid-template-columns: 1fr;
+  }
+}
+
+.screen {
+  margin: 0;
+}
+
+.screenImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+/* 캐릭터처럼 화면이 아닌 이미지는 같은 비율의 칸 안에 작게 */
+.screenImgSmall {
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  padding: 24px;
+  background: var(--surface);
+}
